@@ -8,4 +8,7 @@
 4. use query params for non private user selections
 5. use error boundaries
 6. use Jest for unit testing
-7. use testcafe to add integration testing
+
+## NICE TO HAVE
+
+1. use testcafe to add integration testing
