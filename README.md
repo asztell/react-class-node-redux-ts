@@ -11,4 +11,5 @@
 
 ## NICE TO HAVE
 
-1. use testcafe to add integration testing
+1. create a mapping doc between class component / redux based and functional component / context based apps
+2. use testcafe to add integration testing
