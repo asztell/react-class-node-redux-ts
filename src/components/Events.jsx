@@ -1,7 +1,46 @@
 import { Component } from "react";
+import { useSearchParams } from "react-router-dom";
+import { EventCard } from "./EventCard";
+import "./Events.scss";
 
-export class Events extends Component {
+class EventsClass extends Component {
+  componentDidMount() {
+    this.props.getEvents();
+  }
+
   render() {
-    return <div>Events</div>;
+    const { events, error, selectedEvent, setSelectedEvent } = this.props;
+
+    return (
+      <div className="Events">
+        <h2>Events</h2>
+        {error && <div>{error}</div>}
+        <div>
+          <label htmlFor="event-select">Choose an event:</label>
+          {events.map((event) => {
+            return (
+              <EventCard
+                key={event.name + event.ISODate}
+                event={event}
+                isSelected={selectedEvent?.id === event?.id}
+                selectedEvent={selectedEvent}
+                onEventSelect={setSelectedEvent}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 }
+
+export const Events = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  return (
+    <EventsClass
+      {...props}
+      searchParams={searchParams}
+      setSearchParams={setSearchParams}
+    />
+  );
+};

@@ -1,14 +1,13 @@
 const path = require("path");
 
 const routes = (app, fs) => {
-  const dataPath = path.join(__dirname, "../data/events.json");
+  const dataPath = path.join(__dirname, "./data/events.json");
 
   app.get("/events", (req, res) => {
     fs.readFile(dataPath, "utf8", (err, data) => {
       if (err) {
         throw err;
       }
-
       res.send(JSON.parse(data));
     });
   });
@@ -18,7 +17,6 @@ const routes = (app, fs) => {
       if (err) {
         throw err;
       }
-
       res.send(JSON.parse(data));
     });
   });

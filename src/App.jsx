@@ -8,6 +8,7 @@ export class App extends Component {
       <div className="App">
         <header className="App-Header"></header>
         <div className="App-Content">
+          {/* TODO refactor to markup with <Router> */}
           <Outlet />
         </div>
       </div>
