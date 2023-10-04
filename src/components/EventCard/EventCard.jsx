@@ -1,6 +1,6 @@
 import { Component } from "react";
 import classnames from "classnames";
-import "./EventCard.scss";
+import styles from "./EventCard.module.scss";
 
 export class EventCard extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ export class EventCard extends Component {
 
   onClick = () => {
     const { event, onEventSelect } = this.props;
+    console.log("onEventSelect", onEventSelect);
     onEventSelect(event);
   };
 
@@ -26,21 +27,22 @@ export class EventCard extends Component {
 
     const formattedPrice = new Intl.NumberFormat("en-US", {
       style: "currency",
+      // currency could potentially come from the browser's locale
       currency: "USD",
     }).format(price);
 
     const cardClassName = classnames(
-      "Event-Card",
-      { Selected: isSelected },
-      className
+      styles["Event-Card"],
+      { [styles["Selected"]]: isSelected },
+      styles[className]
     );
 
     return (
       <div onClick={this.onClick} className={cardClassName}>
-        <div className="Event-Name">{name}</div>
-        <div className="Event-Date">{date}</div>
-        <div className="Event-Location">{location}</div>
-        <div className="Event-Price">{formattedPrice}</div>
+        <div className={styles["Event-Name"]}>{name}</div>
+        <div className={styles["Event-Date"]}>{date}</div>
+        <div className={styles["Event-Location"]}>{location}</div>
+        <div className={styles["Event-Price"]}>{formattedPrice}</div>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider as ReduxProvider } from "react-redux";
 import thunk from "redux-thunk";
 import { router } from "./routes";
-import { rootReducer } from "./reducers";
+import { rootReducer } from "./store/reducers";
 import "./index.scss";
 
 const middleWareEnhancer = applyMiddleware(thunk);

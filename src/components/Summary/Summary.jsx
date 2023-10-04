@@ -2,7 +2,6 @@ import { Component } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Summary.scss";
 
-// export class Summary extends Component {
 class SummaryClass extends Component {
   constructor(props) {
     super(props);
@@ -94,14 +93,7 @@ class SummaryClass extends Component {
   }
 }
 
-// TODO: move wrapper around Events.jsx
 export const Summary = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  return (
-    <SummaryClass
-      {...props}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-    />
-  );
+  const [searchParams] = useSearchParams();
+  return <SummaryClass {...props} searchParams={searchParams} />;
 };

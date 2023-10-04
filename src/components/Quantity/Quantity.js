@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { setTicketsCount } from "../actions/ticketPurchasing";
-import { Quantity } from "../components/Quantity";
+import { setTicketsCount } from "../../store/actions/ticketPurchasing";
+import { Quantity } from "./Quantity.jsx";
 
 const mapStateToProps = (state) => {
   return {

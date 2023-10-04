@@ -4,8 +4,8 @@ import {
   updateCardNumber,
   updateSecurityCode,
   updateExpirationDate,
-} from "../actions";
-import { Billing } from "../components";
+} from "../../store/actions";
+import { Billing } from "./Billing.jsx";
 
 const mapStateToProps = (state) => {
   console.log(state.payment);

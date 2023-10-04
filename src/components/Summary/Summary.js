@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { placeOrder } from "../actions";
-// import { withSearchParams } from "../components";
-import { Summary } from "../components";
+import { placeOrder } from "../../store/actions";
+import { Summary } from "./Summary.jsx";
 
 const mapStateToProps = (state) => {
   const {
@@ -31,10 +30,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  // export default withSearchParams(connect(mapStateToProps, mapDispatchToProps))(
-  Summary
-);
+const SummaryContainer = connect(mapStateToProps, mapDispatchToProps)(Summary);
+export { SummaryContainer };

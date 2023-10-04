@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import { Events } from "../containers";
-import { Quantity } from "../containers";
+import Events from "../../components/Events/Events.js";
+import Quantity from "../../components/Quantity/Quantity.js";
 
 export default class EventsPage extends Component {
   render() {

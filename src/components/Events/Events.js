@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { getEvents } from "../actions";
-import { setSelectedEvent } from "../actions/ticketPurchasing";
-import { Events } from "../components";
+import { getEvents } from "../../store/actions";
+import { setSelectedEvent } from "../../store/actions/ticketPurchasing";
+import { Events } from "./Events.jsx";
 
 const mapStateToProps = (state) => {
   const { events, error } = state.events;

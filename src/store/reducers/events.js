@@ -8,6 +8,7 @@ const initialState = {
 export function events(state = initialState, action) {
   switch (action.type) {
     case GET_EVENTS_SUCCESS:
+      console.log("GET_EVENTS_SUCCESS action.events", action.events);
       return {
         ...state,
         events: action.events,
