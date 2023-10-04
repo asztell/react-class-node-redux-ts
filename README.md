@@ -6,7 +6,7 @@
 2. ✅ use class components
    - default props
 3. use redux for state management (sensitive data)
-   - create "containers" to separate concerns
+   ✅ - create "containers" to separate concerns
 4. use query params for non private user selections
 5. use error boundaries
 6. use Jest for unit testing
