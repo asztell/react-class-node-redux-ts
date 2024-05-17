@@ -4,6 +4,7 @@
     align-items: center;
     > button {
       padding: 10px 15px;
+      cursor: pointer;
     }
   }
   .Value {
@@ -11,5 +12,6 @@
     margin-right: 20px;
     font-size: 20px;
     line-height: 1;
+    text-align: center;
   }
 }

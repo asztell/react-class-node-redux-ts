@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { useSearchParams } from "react-router-dom";
+import { withSearchParams, getSearchParams } from "../withSearchParams";
 import "./Summary.scss";
 
 class SummaryClass extends Component {
@@ -20,8 +20,7 @@ class SummaryClass extends Component {
 
   handleSubmit() {
     const {
-      selectedEvent,
-      ticketsCount,
+      // ticketsCount,
       nameOnCard,
       cardNumber,
       cardType,
@@ -30,8 +29,7 @@ class SummaryClass extends Component {
     } = this.props;
 
     onSubmit({
-      selectedEvent,
-      ticketsCount,
+      // ticketsCount,
       nameOnCard,
       cardNumber,
       cardType,
@@ -44,21 +42,36 @@ class SummaryClass extends Component {
     const { termsOfUseChecked } = state;
     const {
       className,
-      selectedEvent,
-      ticketsCount,
+      // ticketsCount,
       nameOnCard,
       cardNumber,
       cardType,
       securityCode,
       securityCodeValid,
       expirationDateValid,
+      searchParams,
+      events,
     } = props;
+    // const eventId = Number(searchParams.get("eventId"));
+    console.log("searchParams.entries()", searchParams.entries());
+    const { eventId, ticketsCount } = getSearchParams(searchParams);
+    const event = events.find((event) => event.id === eventId);
+    const isTicketPurchaseDisabled = () => {
+      return (
+        cardType === "" ||
+        cardType === "Invalid" ||
+        !securityCodeValid ||
+        !expirationDateValid ||
+        !termsOfUseChecked ||
+        ticketsCount === 0
+      );
+    };
 
     return (
       <div className={className}>
         <div className="Total">
           <h2>Total</h2>
-          <p>Event: {selectedEvent?.name}</p>
+          <p>Event: {event?.name}</p>
           <p>Tickets: {ticketsCount}</p>
           <p>Card Number: {cardNumber}</p>
           <p>Name: {nameOnCard}</p>
@@ -76,14 +89,7 @@ class SummaryClass extends Component {
           <button
             className="Purchase-Tickets-Button"
             onClick={handleSubmit}
-            disabled={
-              cardType === "" ||
-              cardType === "Invalid" ||
-              !securityCodeValid ||
-              !expirationDateValid ||
-              !termsOfUseChecked ||
-              ticketsCount === 0
-            }
+            disabled={isTicketPurchaseDisabled()}
           >
             Place Order
           </button>
@@ -94,6 +100,5 @@ class SummaryClass extends Component {
 }
 
 export const Summary = (props) => {
-  const [searchParams] = useSearchParams();
-  return <SummaryClass {...props} searchParams={searchParams} />;
+  return withSearchParams(SummaryClass)(props);
 };

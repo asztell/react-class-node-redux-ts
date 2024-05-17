@@ -1,15 +1,21 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./HomePage.scss";
 
-export default class HomePage extends Component {
+class HomePageClass extends Component {
   render() {
+    const { location } = this.props;
     return (
       <div className="Home Page">
-        <Link to="/events" className="Events-Link">
+        <Link to={`/events${location.search}`} className="Events-Link">
           Check out Events in your area
         </Link>
       </div>
     );
   }
 }
+
+export const HomePage = (props) => {
+  const location = useLocation();
+  return <HomePageClass {...props} location={location} />;
+};

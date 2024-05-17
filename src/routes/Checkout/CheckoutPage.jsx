@@ -3,7 +3,7 @@ import Billing from "../../components/Billing/Billing.js";
 import { SummaryContainer } from "../../components/Summary/Summary.js";
 import "./CheckoutPage.scss";
 
-export default class CheckoutPage extends Component {
+export class CheckoutPage extends Component {
   render() {
     return (
       <>

@@ -2,3 +2,25 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+a {
+  border-radius: 2px;
+  border: 0 solid transparent;
+  height: 32px;
+  padding: 10px 25px 0;
+  background-color: #777;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  &:hover {
+    background-color: #555;
+  }
+}
+.Events_Page {
+  & .Right {
+    float: right;
+  }
+  & .Left {
+    float: left;
+  }
+}

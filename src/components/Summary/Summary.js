@@ -3,6 +3,8 @@ import { placeOrder } from "../../store/actions";
 import { Summary } from "./Summary.jsx";
 
 const mapStateToProps = (state) => {
+  const { ticketsCount, selectedEvent } = state.ticketPurchasing;
+  const { events } = state.events;
   const {
     nameOnCard,
     cardNumber,
@@ -11,10 +13,10 @@ const mapStateToProps = (state) => {
     securityCodeValid,
     expirationDateValid,
   } = state.payment;
-  const { ticketsCount, selectedEvent } = state.ticketPurchasing;
   return {
     ticketsCount,
     selectedEvent,
+    events,
     nameOnCard,
     cardNumber,
     cardType,

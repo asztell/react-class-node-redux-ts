@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { useSearchParams } from "react-router-dom";
 import { EventCard } from "../EventCard/EventCard";
+import { withSearchParams, getSearchParams } from "../withSearchParams";
 import "./Events.scss";
 
 class EventsClass extends Component {
@@ -9,7 +9,18 @@ class EventsClass extends Component {
   }
 
   render() {
-    const { events, error, selectedEvent, setSelectedEvent } = this.props;
+    const { events, error, searchParams, setSearchParams } = this.props;
+    const { eventId } = getSearchParams(searchParams);
+    console.log("setSearchParams", setSearchParams);
+    const setSelectedEvent = (eventId) => {
+      setSearchParams(
+        (searchParams) => {
+          searchParams.set("eventId", eventId);
+          return searchParams;
+        },
+        { replace: true }
+      );
+    };
 
     return (
       <div className="Events">
@@ -18,15 +29,13 @@ class EventsClass extends Component {
         <div>
           <label htmlFor="event-select">Choose an event:</label>
           {events.map((event) => {
-            // console.log("event.id", event?.id);
-            // console.log("selectedEvent.id", selectedEvent?.id);
             return (
               <EventCard
-                key={event.name + event.ISODate}
+                key={event.id}
                 event={event}
-                isSelected={selectedEvent?.id === event?.id}
-                selectedEvent={selectedEvent}
-                onEventSelect={setSelectedEvent}
+                className="Event-Card"
+                isSelected={eventId === event.id}
+                onEventSelect={(e) => setSelectedEvent(e)}
               />
             );
           })}
@@ -37,12 +46,9 @@ class EventsClass extends Component {
 }
 
 export const Events = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  return (
-    <EventsClass
-      {...props}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-    />
-  );
+  const defaultParams = {
+    eventId: "",
+    count: "",
+  };
+  return withSearchParams(EventsClass, defaultParams)(props);
 };
