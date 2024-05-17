@@ -13,5 +13,5 @@
 
 ## NICE TO HAVE
 
-1. create a mapping doc between class component / redux based and functional component / context based apps
+1. create a mapping doc between class-component/redux-based and functional-component/context-based apps
 2. use cypress to add integration testing
